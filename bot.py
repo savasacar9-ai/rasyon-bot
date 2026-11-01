@@ -180,7 +180,10 @@ def make_settings_keyboard():
     return {
         "inline_keyboard": [
             [
-                {"text": "💰 Yem Fiyatlarını Güncelle", "callback_data": "set_prices_list"}
+                {"text": "🌐 Webden Otomatik Güncelle (GTB & USK)", "callback_data": "auto_update_web_prices"}
+            ],
+            [
+                {"text": "💰 Yem Fiyatlarını Tek Tek Güncelle", "callback_data": "set_prices_list"}
             ],
             [
                 {"text": "➕ Yeni Yem Ekle", "callback_data": "set_add_feed"}
@@ -441,6 +444,23 @@ def handle_quick_price_command(chat_id: int, text: str, state: str) -> bool:
     """
     clean_text = text.lower().strip()
     
+    # 0. 'web guncelle' veya '/web_guncelle' komutu
+    if clean_text in ["web guncelle", "web güncelle", "otomatik guncelle", "otomatik güncelle", "/web_guncelle", "/fiyat_guncelle"]:
+        from price_crawler import auto_update_all_web_prices
+        tg_send_message(chat_id, "⏳ _Gaziantep Ticaret Borsası (GTB) ve Ulusal Süt Konseyi (USK) taranıyor, güncel bülten fiyatları çekiliyor..._")
+        res = auto_update_all_web_prices()
+        report_lines = [
+            "✅ **WEB FİYATLARI BAŞARIYLA GÜNCELLENDİ!**",
+            f"📅 **Tarih:** {res['timestamp']}",
+            f"📊 **Güncellenen Ürün Sayısı:** {res['updated_count']}\n",
+            "📋 **Yeni Kilogram Fiyatları:**"
+        ]
+        for name, old_p, new_p, src in res['items']:
+            report_lines.append(f"• **{name}:** `{new_p:.2f} ₺/kg` _({src})_")
+        report_lines.append("\n_Bu fiyatlar artık veritabanında aktif olup rasyon optimizasyonunda doğrudan kullanılacaktır._")
+        tg_send_message(chat_id, "\n".join(report_lines), make_settings_keyboard())
+        return True
+
     # 1. 'fiyatlar' veya 'liste' yazıldığında tüm listeyi göster
     if clean_text in ["fiyatlar", "yemler", "liste", "/fiyatlar", "/yemler", "/liste"]:
         txt_all = ["📋 **GÜNCEL YEM VE FİYAT VERİTABANI:**\n"]
@@ -740,6 +760,26 @@ def handle_callback(chat_id: int, message_id: int, callback_data: str, query_id:
         )
         tg_edit_message(chat_id, message_id, text, make_settings_keyboard())
         
+    elif callback_data == "auto_update_web_prices":
+        tg_answer_callback(query_id, text="Web siteleri taranıyor...")
+        tg_send_message(chat_id, "⏳ _Gaziantep Ticaret Borsası (GTB) ve Ulusal Süt Konseyi (USK) taranıyor, güncel bülten fiyatları çekiliyor..._")
+        try:
+            from price_crawler import auto_update_all_web_prices
+            res = auto_update_all_web_prices()
+            report_lines = [
+                "✅ **WEB FİYATLARI BAŞARIYLA GÜNCELLENDİ!**",
+                f"📅 **Tarih:** {res['timestamp']}",
+                f"📊 **Güncellenen Ürün Sayısı:** {res['updated_count']}\n",
+                "📋 **Yeni Kilogram Fiyatları:**"
+            ]
+            for name, old_p, new_p, src in res['items']:
+                report_lines.append(f"• **{name}:** `{new_p:.2f} ₺/kg` _({src})_")
+            report_lines.append("\n_Bu fiyatlar artık veritabanında aktif olup rasyon optimizasyonunda doğrudan kullanılacaktır._")
+            tg_send_message(chat_id, "\n".join(report_lines), make_settings_keyboard())
+        except Exception as e:
+            logger.error(f"Web update error: {e}")
+            tg_send_message(chat_id, f"❌ Fiyatlar taranırken hata oluştu: {e}", make_settings_keyboard())
+
     elif callback_data == "set_prices_list":
         tg_answer_callback(query_id)
         text = (
@@ -988,10 +1028,34 @@ def start_cloud_health_server():
     except Exception as e:
         logger.warning(f"Web port dinleme başlatılamadı: {e}")
 
+def monthly_price_update_daemon():
+    """Arka planda her gün kontrol eder; ayın 1'inde veya ay başında otomatik GTB & USK güncellemesi yapar."""
+    while True:
+        try:
+            now = datetime.now()
+            state_file = os.path.join(os.path.dirname(__file__), ".last_web_update")
+            last_date_str = ""
+            if os.path.exists(state_file):
+                with open(state_file, "r") as f:
+                    last_date_str = f.read().strip()
+            
+            cur_month_str = now.strftime("%Y-%m")
+            if last_date_str != cur_month_str and now.day >= 1:
+                logger.info("Aylık otomatik fiyat güncellemesi başlatılıyor (GTB & USK)...")
+                from price_crawler import auto_update_all_web_prices
+                res = auto_update_all_web_prices()
+                logger.info(f"Aylık fiyat güncellemesi tamamlandı: {res.get('updated_count')} yem güncellendi.")
+                with open(state_file, "w") as f:
+                    f.write(cur_month_str)
+        except Exception as e:
+            logger.error(f"Aylık fiyat tarayıcı arka plan hatası: {e}")
+        time.sleep(3600 * 6) # 6 saatte bir kontrol et
+
 # --- Bot Long-Polling Döngüsü ---
 
 def run_bot():
     start_cloud_health_server()
+    threading.Thread(target=monthly_price_update_daemon, daemon=True).start()
     logger.info("Rasyon Telegram Botu Başlatılıyor...")
     offset = 0
     

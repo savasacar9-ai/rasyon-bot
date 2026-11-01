@@ -70,7 +70,7 @@ def calculate_besi_requirements(live_weight: float, daily_gain_grams: float, bre
     p_grow = (adg_kg * 1000.0) * (0.045 / 0.68) * 0.15
     p_req = p_maint + p_grow
     
-    min_forage_ratio = 0.22 if bw > 400 else 0.25
+    min_forage_ratio = 0.18 if bw > 400 else 0.20
     
     return {
         "group": "Besi Sığırı",
@@ -85,7 +85,8 @@ def calculate_besi_requirements(live_weight: float, daily_gain_grams: float, bre
         "hp_req": round(hp_req, 1),
         "ca_req": round(ca_req, 1),
         "p_req": round(p_req, 1),
-        "min_forage_ratio": min_forage_ratio
+        "min_forage_ratio": min_forage_ratio,
+        "max_forage_ratio": 0.40
     }
 
 
@@ -131,7 +132,7 @@ def calculate_sut_requirements(live_weight: float, milk_yield_kg: float, milk_fa
     ca_req = (0.031 * bw) + (1.25 * milk)
     p_req = dmi + (0.002 * bw) + (0.90 * milk)
     
-    min_forage_ratio = 0.35
+    min_forage_ratio = 0.20
     
     return {
         "group": "Sütçü İnek",
@@ -147,7 +148,8 @@ def calculate_sut_requirements(live_weight: float, milk_yield_kg: float, milk_fa
         "hp_req": round(hp_req, 1),
         "ca_req": round(ca_req, 1),
         "p_req": round(p_req, 1),
-        "min_forage_ratio": min_forage_ratio
+        "min_forage_ratio": min_forage_ratio,
+        "max_forage_ratio": 0.40
     }
 
 
@@ -191,7 +193,7 @@ def calculate_koyun_requirements(live_weight: float, physiological_state: str = 
     ca = matched_row["Ca"] * scale
     p = matched_row["P"] * scale
     
-    min_forage = 0.35 if ("toklu" in state or "besi" in state) else 0.45
+    min_forage = 0.15 if ("toklu" in state or "besi" in state) else 0.25
     
     return {
         "group": "Koyun / Küçükbaş",
@@ -204,5 +206,6 @@ def calculate_koyun_requirements(live_weight: float, physiological_state: str = 
         "hp_req": round(hp, 1),
         "ca_req": round(ca, 1),
         "p_req": round(p, 1),
-        "min_forage_ratio": min_forage
+        "min_forage_ratio": min_forage,
+        "max_forage_ratio": 0.40
     }

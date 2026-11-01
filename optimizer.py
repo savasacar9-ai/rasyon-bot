@@ -82,8 +82,8 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
         dmi_min = dmi_target * (0.85 - attempt * 0.05)
         dmi_max = dmi_target * (1.10 + attempt * 0.08)
         
-        min_fr = reqs.get("min_forage_ratio", 0.30) - (attempt * 0.04)
-        min_fr = max(0.18, min_fr)
+        min_fr = min(0.25, reqs.get("min_forage_ratio", 0.20)) - (attempt * 0.03)
+        min_fr = max(0.12, min_fr)
         
         c = [f["price"] for f in selected_feeds]
         A_ub = []
@@ -117,15 +117,31 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
         A_ub.append([-f["KM"] / 100.0 * f["P"] * 10.0 for f in selected_feeds])
         b_ub.append(-reqs["p_req"])
         
-        # Kısıt 7: Kaba Yem Oranı Alt Sınırı
-        forage_row = []
+        # Kısıt 7: Kaba Yem Oranı Alt Sınırı (Rumen sağlığı için asgari %15-20)
+        min_fr = reqs.get("min_forage_ratio", 0.20) - (attempt * 0.02)
+        min_fr = max(0.12, min(min_fr, 0.25))
+        
+        forage_min_row = []
         for f in selected_feeds:
             km_coeff = f["KM"] / 100.0
             if f["is_forage"]:
-                forage_row.append((min_fr - 1.0) * km_coeff)
+                forage_min_row.append((min_fr - 1.0) * km_coeff)
             else:
-                forage_row.append(min_fr * km_coeff)
-        A_ub.append(forage_row)
+                forage_min_row.append(min_fr * km_coeff)
+        A_ub.append(forage_min_row)
+        b_ub.append(0.0)
+        
+        # Kısıt 8: Kaba Yem Oranı Üst Sınırı (KURAL: Kaba Yem KM'si %40'ı ASLA GEÇMESİN!)
+        # Forage DMI <= 0.40 * Total DMI -> (1 - 0.40)*Forage - 0.40*Conc <= 0
+        max_fr = 0.40
+        forage_max_row = []
+        for f in selected_feeds:
+            km_coeff = f["KM"] / 100.0
+            if f["is_forage"]:
+                forage_max_row.append((1.0 - max_fr) * km_coeff)
+            else:
+                forage_max_row.append(-max_fr * km_coeff)
+        A_ub.append(forage_max_row)
         b_ub.append(0.0)
         
         bounds = [(f["min"], f["max"]) for f in selected_feeds]

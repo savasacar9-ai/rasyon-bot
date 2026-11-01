@@ -14,7 +14,8 @@
     "is_forage": true,
     "default_price": 2.41,
     "min_default": 0.5,
-    "max_default": 4.0
+    "max_default": 4.0,
+    "nisasta": 1.2
   },
   "bugday_samani": {
     "id": "bugday_samani",
@@ -31,7 +32,8 @@
     "is_forage": true,
     "default_price": 4.38,
     "min_default": 0.5,
-    "max_default": 4.0
+    "max_default": 4.0,
+    "nisasta": 1.0
   },
   "yonca_kuru_otu": {
     "id": "yonca_kuru_otu",
@@ -48,7 +50,8 @@
     "is_forage": true,
     "default_price": 12.91,
     "min_default": 0.5,
-    "max_default": 7.0
+    "max_default": 7.0,
+    "nisasta": 2.2
   },
   "misir_silaji": {
     "id": "misir_silaji",
@@ -65,7 +68,8 @@
     "is_forage": true,
     "default_price": 4.9,
     "min_default": 2.0,
-    "max_default": 25.0
+    "max_default": 25.0,
+    "nisasta": 30.5
   },
   "pancar_posasi_yas": {
     "id": "pancar_posasi_yas",
@@ -82,7 +86,8 @@
     "is_forage": true,
     "default_price": 1.8,
     "min_default": 0.0,
-    "max_default": 12.0
+    "max_default": 12.0,
+    "nisasta": 1.5
   },
   "arpa_ezme": {
     "id": "arpa_ezme",
@@ -99,7 +104,8 @@
     "is_forage": false,
     "default_price": 13.5,
     "min_default": 0.0,
-    "max_default": 7.0
+    "max_default": 7.0,
+    "nisasta": 57.0
   },
   "misir_tane": {
     "id": "misir_tane",
@@ -116,7 +122,8 @@
     "is_forage": false,
     "default_price": 15.6,
     "min_default": 0.0,
-    "max_default": 6.0
+    "max_default": 6.0,
+    "nisasta": 71.5
   },
   "bugday_kepegi": {
     "id": "bugday_kepegi",
@@ -133,7 +140,8 @@
     "is_forage": false,
     "default_price": 14.0,
     "min_default": 0.0,
-    "max_default": 3.0
+    "max_default": 3.0,
+    "nisasta": 20.5
   },
   "aycicegi_kuspesi_28": {
     "id": "aycicegi_kuspesi_28",
@@ -150,7 +158,8 @@
     "is_forage": false,
     "default_price": 11.76,
     "min_default": 0.0,
-    "max_default": 3.5
+    "max_default": 3.5,
+    "nisasta": 3.0
   },
   "pamuk_kuspesi_28": {
     "id": "pamuk_kuspesi_28",
@@ -167,7 +176,8 @@
     "is_forage": false,
     "default_price": 11.0,
     "min_default": 0.0,
-    "max_default": 3.0
+    "max_default": 3.0,
+    "nisasta": 3.5
   },
   "soya_kuspesi_44": {
     "id": "soya_kuspesi_44",
@@ -184,7 +194,8 @@
     "is_forage": false,
     "default_price": 25.091,
     "min_default": 0.0,
-    "max_default": 2.5
+    "max_default": 2.5,
+    "nisasta": 5.2
   },
   "pro_vira_buzagi": {
     "id": "pro_vira_buzagi",
@@ -201,7 +212,8 @@
     "is_forage": false,
     "default_price": 23.1,
     "min_default": 0.0,
-    "max_default": 5.0
+    "max_default": 5.0,
+    "nisasta": 28.0
   },
   "pro_tutku_buzagi": {
     "id": "pro_tutku_buzagi",
@@ -218,7 +230,8 @@
     "is_forage": false,
     "default_price": 22.06,
     "min_default": 0.0,
-    "max_default": 5.0
+    "max_default": 5.0,
+    "nisasta": 27.0
   },
   "pro_tosun_besi": {
     "id": "pro_tosun_besi",
@@ -235,7 +248,8 @@
     "is_forage": false,
     "default_price": 19.96,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 34.0
   },
   "pro_spr_tosun": {
     "id": "pro_spr_tosun",
@@ -252,7 +266,8 @@
     "is_forage": false,
     "default_price": 21.02,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 35.5
   },
   "pro_sah_besi": {
     "id": "pro_sah_besi",
@@ -269,7 +284,8 @@
     "is_forage": false,
     "default_price": 21.32,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 34.5
   },
   "pro_mat_besi_bitir": {
     "id": "pro_mat_besi_bitir",
@@ -286,7 +302,8 @@
     "is_forage": false,
     "default_price": 21.69,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 36.5
   },
   "pro_tahil_besi": {
     "id": "pro_tahil_besi",
@@ -303,7 +320,8 @@
     "is_forage": false,
     "default_price": 21.29,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 32.0
   },
   "pro_tane_besi_toz": {
     "id": "pro_tane_besi_toz",
@@ -320,7 +338,8 @@
     "is_forage": false,
     "default_price": 21.16,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 35.0
   },
   "kabul_cusse": {
     "id": "kabul_cusse",
@@ -337,7 +356,8 @@
     "is_forage": false,
     "default_price": 11.2,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 33.0
   },
   "kabul_besi_toz": {
     "id": "kabul_besi_toz",
@@ -354,7 +374,8 @@
     "is_forage": false,
     "default_price": 11.0,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 33.0
   },
   "pro_aktif": {
     "id": "pro_aktif",
@@ -371,7 +392,8 @@
     "is_forage": false,
     "default_price": 20.31,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 25.0
   },
   "pro_enerji": {
     "id": "pro_enerji",
@@ -388,7 +410,8 @@
     "is_forage": false,
     "default_price": 21.72,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 27.5
   },
   "pro_4x4": {
     "id": "pro_4x4",
@@ -405,7 +428,8 @@
     "is_forage": false,
     "default_price": 22.31,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 26.5
   },
   "pro_kanit": {
     "id": "pro_kanit",
@@ -422,7 +446,8 @@
     "is_forage": false,
     "default_price": 22.66,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 25.5
   },
   "pro_41": {
     "id": "pro_41",
@@ -439,7 +464,8 @@
     "is_forage": false,
     "default_price": 23.01,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 24.0
   },
   "pro_cizgi": {
     "id": "pro_cizgi",
@@ -456,7 +482,8 @@
     "is_forage": false,
     "default_price": 24.04,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 24.5
   },
   "pro_balans": {
     "id": "pro_balans",
@@ -473,7 +500,8 @@
     "is_forage": false,
     "default_price": 26.13,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 18.0
   },
   "pro_dogus": {
     "id": "pro_dogus",
@@ -490,7 +518,8 @@
     "is_forage": false,
     "default_price": 26.22,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 20.0
   },
   "pro_kuru_donem": {
     "id": "pro_kuru_donem",
@@ -507,7 +536,8 @@
     "is_forage": false,
     "default_price": 20.22,
     "min_default": 0.0,
-    "max_default": 5.0
+    "max_default": 5.0,
+    "nisasta": 16.0
   },
   "pro_son_60": {
     "id": "pro_son_60",
@@ -524,7 +554,8 @@
     "is_forage": false,
     "default_price": 23.81,
     "min_default": 0.0,
-    "max_default": 5.0
+    "max_default": 5.0,
+    "nisasta": 26.0
   },
   "pro_duve": {
     "id": "pro_duve",
@@ -541,7 +572,8 @@
     "is_forage": false,
     "default_price": 20.35,
     "min_default": 0.0,
-    "max_default": 6.0
+    "max_default": 6.0,
+    "nisasta": 22.0
   },
   "pro_tane_sut_toz": {
     "id": "pro_tane_sut_toz",
@@ -558,7 +590,8 @@
     "is_forage": false,
     "default_price": 21.9,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 26.5
   },
   "kabul_dira": {
     "id": "kabul_dira",
@@ -575,7 +608,8 @@
     "is_forage": false,
     "default_price": 12.0,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 25.0
   },
   "kabul_nisan": {
     "id": "kabul_nisan",
@@ -592,7 +626,8 @@
     "is_forage": false,
     "default_price": 13.0,
     "min_default": 0.0,
-    "max_default": 9.0
+    "max_default": 9.0,
+    "nisasta": 24.0
   },
   "pro_kuzu_yemi": {
     "id": "pro_kuzu_yemi",
@@ -609,7 +644,8 @@
     "is_forage": false,
     "default_price": 21.82,
     "min_default": 0.0,
-    "max_default": 1.8
+    "max_default": 1.8,
+    "nisasta": 32.0
   },
   "skor_kuzu_besi": {
     "id": "skor_kuzu_besi",
@@ -626,7 +662,8 @@
     "is_forage": false,
     "default_price": 23.14,
     "min_default": 0.0,
-    "max_default": 1.8
+    "max_default": 1.8,
+    "nisasta": 34.0
   },
   "pro_toklu_besi": {
     "id": "pro_toklu_besi",
@@ -643,7 +680,8 @@
     "is_forage": false,
     "default_price": 21.08,
     "min_default": 0.0,
-    "max_default": 1.8
+    "max_default": 1.8,
+    "nisasta": 30.0
   },
   "pro_taneli_toklu": {
     "id": "pro_taneli_toklu",
@@ -660,7 +698,8 @@
     "is_forage": false,
     "default_price": 22.82,
     "min_default": 0.0,
-    "max_default": 1.8
+    "max_default": 1.8,
+    "nisasta": 31.0
   },
   "pro_koyun_sut": {
     "id": "pro_koyun_sut",
@@ -677,7 +716,8 @@
     "is_forage": false,
     "default_price": 20.34,
     "min_default": 0.0,
-    "max_default": 1.8
+    "max_default": 1.8,
+    "nisasta": 25.0
   },
   "mermer_tozu": {
     "id": "mermer_tozu",
@@ -694,7 +734,8 @@
     "is_forage": false,
     "default_price": 2.0,
     "min_default": 0.03,
-    "max_default": 0.15
+    "max_default": 0.15,
+    "nisasta": 0.0
   },
   "tuz": {
     "id": "tuz",
@@ -711,7 +752,8 @@
     "is_forage": false,
     "default_price": 2.0,
     "min_default": 0.02,
-    "max_default": 0.06
+    "max_default": 0.06,
+    "nisasta": 0.0
   },
   "sodyum_bikarbonat": {
     "id": "sodyum_bikarbonat",
@@ -728,7 +770,8 @@
     "is_forage": false,
     "default_price": 15.0,
     "min_default": 0.0,
-    "max_default": 0.15
+    "max_default": 0.15,
+    "nisasta": 0.0
   },
   "vitamin_mineral": {
     "id": "vitamin_mineral",
@@ -745,7 +788,8 @@
     "is_forage": false,
     "default_price": 35.0,
     "min_default": 0.02,
-    "max_default": 0.08
+    "max_default": 0.08,
+    "nisasta": 0.0
   },
   "bugday_tane": {
     "id": "bugday_tane",
@@ -762,7 +806,8 @@
     "is_forage": false,
     "default_price": 19.0,
     "min_default": 0.0,
-    "max_default": 4.0
+    "max_default": 4.0,
+    "nisasta": 64.0
   },
   "bugday_kirik": {
     "id": "bugday_kirik",
@@ -779,7 +824,8 @@
     "is_forage": false,
     "default_price": 14.5,
     "min_default": 0.0,
-    "max_default": 4.0
+    "max_default": 4.0,
+    "nisasta": 64.0
   },
   "misir_ddgs": {
     "id": "misir_ddgs",
@@ -796,7 +842,8 @@
     "is_forage": false,
     "default_price": 16.564,
     "min_default": 0.0,
-    "max_default": 3.0
+    "max_default": 3.0,
+    "nisasta": 6.5
   },
   "un_bonkalite": {
     "id": "un_bonkalite",
@@ -813,7 +860,8 @@
     "is_forage": false,
     "default_price": 15.5,
     "min_default": 0.0,
-    "max_default": 3.5
+    "max_default": 3.5,
+    "nisasta": 38.0
   },
   "mercimek_samani": {
     "id": "mercimek_samani",
@@ -830,7 +878,8 @@
     "is_forage": true,
     "default_price": 17.0,
     "min_default": 0.5,
-    "max_default": 4.0
+    "max_default": 4.0,
+    "nisasta": 1.5
   },
   "pro_protek_besi": {
     "id": "pro_protek_besi",
@@ -847,7 +896,8 @@
     "is_forage": false,
     "default_price": 21.37,
     "min_default": 0.0,
-    "max_default": 8.0
+    "max_default": 8.0,
+    "nisasta": 33.0
   },
   "pro_etci_buzagi_buyutme": {
     "id": "pro_etci_buzagi_buyutme",
@@ -864,7 +914,8 @@
     "is_forage": false,
     "default_price": 21.82,
     "min_default": 0.0,
-    "max_default": 4.0
+    "max_default": 4.0,
+    "nisasta": 29.0
   },
   "fig_kuru_otu": {
     "id": "fig_kuru_otu",
@@ -881,7 +932,8 @@
     "is_forage": true,
     "default_price": 11.5,
     "min_default": 0.5,
-    "max_default": 6.0
+    "max_default": 6.0,
+    "nisasta": 2.5
   },
   "yulaf_kuru_otu": {
     "id": "yulaf_kuru_otu",
@@ -898,7 +950,8 @@
     "is_forage": true,
     "default_price": 8.5,
     "min_default": 0.5,
-    "max_default": 6.0
+    "max_default": 6.0,
+    "nisasta": 4.5
   },
   "yulaf_silaji": {
     "id": "yulaf_silaji",
@@ -915,7 +968,8 @@
     "is_forage": true,
     "default_price": 3.8,
     "min_default": 2.0,
-    "max_default": 18.0
+    "max_default": 18.0,
+    "nisasta": 8.0
   },
   "yulaf_ezme": {
     "id": "yulaf_ezme",
@@ -932,7 +986,8 @@
     "is_forage": false,
     "default_price": 12.5,
     "min_default": 0.0,
-    "max_default": 5.0
+    "max_default": 5.0,
+    "nisasta": 43.5
   },
   "seker_pancari_melasi": {
     "id": "seker_pancari_melasi",
@@ -949,7 +1004,8 @@
     "is_forage": false,
     "default_price": 6.8,
     "min_default": 0.0,
-    "max_default": 2.0
+    "max_default": 2.0,
+    "nisasta": 0.5
   },
   "bitkisel_yag": {
     "id": "bitkisel_yag",
@@ -966,6 +1022,7 @@
     "is_forage": false,
     "default_price": 55.0,
     "min_default": 0.0,
-    "max_default": 0.6
+    "max_default": 0.6,
+    "nisasta": 0.0
   }
 }

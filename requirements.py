@@ -86,7 +86,9 @@ def calculate_besi_requirements(live_weight: float, daily_gain_grams: float, bre
         "ca_req": round(ca_req, 1),
         "p_req": round(p_req, 1),
         "min_forage_ratio": min_forage_ratio,
-        "max_forage_ratio": 0.40
+        "max_forage_ratio": 0.40,
+        "nisasta_target_min": 25.0,
+        "nisasta_target_max": 42.0
     }
 
 
@@ -149,7 +151,9 @@ def calculate_sut_requirements(live_weight: float, milk_yield_kg: float, milk_fa
         "ca_req": round(ca_req, 1),
         "p_req": round(p_req, 1),
         "min_forage_ratio": min_forage_ratio,
-        "max_forage_ratio": 0.40
+        "max_forage_ratio": 0.40,
+        "nisasta_target_min": 22.0,
+        "nisasta_target_max": 28.0
     }
 
 
@@ -193,7 +197,7 @@ def calculate_koyun_requirements(live_weight: float, physiological_state: str = 
     ca = matched_row["Ca"] * scale
     p = matched_row["P"] * scale
     
-    min_forage = 0.15 if ("toklu" in state or "besi" in state) else 0.25
+    min_forage_ratio = 0.15 if ("toklu" in state or "besi" in state) else 0.25
     
     return {
         "group": "Koyun / Küçükbaş",
@@ -206,6 +210,8 @@ def calculate_koyun_requirements(live_weight: float, physiological_state: str = 
         "hp_req": round(hp, 1),
         "ca_req": round(ca, 1),
         "p_req": round(p, 1),
-        "min_forage_ratio": min_forage,
-        "max_forage_ratio": 0.40
+        "min_forage_ratio": min_forage_ratio,
+        "max_forage_ratio": 0.40,
+        "nisasta_target_min": 20.0,
+        "nisasta_target_max": 34.0
     }

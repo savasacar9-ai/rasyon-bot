@@ -79,7 +79,7 @@ def generate_expert_report(result: Dict[str, Any]) -> str:
     
     # Yüksek Mühendis M. Fatih Ceyhan Uzman Yorumu
     report.append("🧠 **YÜKSEK MÜHENDİS M. FATİH CEYHAN UZMAN YORUMU**")
-    report.append("_Selçuk Üniversitesi & İstanbul Üniversitesi (Doç. Dr. Ahmet Yavuz Pekel) Rasyon Standartları_")
+    report.append("_Selçuk Üniversitesi, İ.Ü. (Doç. Dr. Ahmet Yavuz Pekel) & Amasya DSYB (NRC 2001) Saha Standartları_")
     report.append("")
     
     # Asidoz ve Kaba Yem Değerlendirmesi

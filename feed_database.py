@@ -513,7 +513,17 @@ COMMON_ALIASES = {
     "tuz": "tuz",
     "karbonat": "sodyum_bikarbonat",
     "bikarbonat": "sodyum_bikarbonat",
-    "vitamin": "vitamin_mineral"
+    "vitamin": "vitamin_mineral",
+    "fig": "fig_kuru_otu",
+    "fig otu": "fig_kuru_otu",
+    "yulaf": "yulaf_ezme",
+    "yulaf ezme": "yulaf_ezme",
+    "yulaf otu": "yulaf_kuru_otu",
+    "yulaf samani": "yulaf_kuru_otu",
+    "yulaf silaji": "yulaf_silaji",
+    "melas": "seker_pancari_melasi",
+    "yag": "bitkisel_yag",
+    "bypass yag": "bitkisel_yag"
 }
 
 def find_feed_by_fuzzy_name(search_term: str):
@@ -604,11 +614,11 @@ def get_feed_keys_by_group(group: str):
 
 def get_default_feed_list_for_group(group: str):
     if group == "besi":
-        return ["arpa_samani", "yonca_kuru_otu", "misir_silaji", "pro_tosun_besi", "mermer_tozu", "tuz", "vitamin_mineral"]
+        return ["arpa_samani", "yonca_kuru_otu", "misir_silaji", "arpa_ezme", "pro_tosun_besi", "mermer_tozu", "tuz", "vitamin_mineral"]
     elif group == "sut":
-        return ["bugday_samani", "yonca_kuru_otu", "misir_silaji", "pro_enerji", "mermer_tozu", "tuz", "sodyum_bikarbonat", "vitamin_mineral"]
+        return ["bugday_samani", "yonca_kuru_otu", "misir_silaji", "arpa_ezme", "soya_kuspesi_44", "pro_enerji", "mermer_tozu", "tuz", "sodyum_bikarbonat", "vitamin_mineral"]
     elif group == "koyun":
-        return ["arpa_samani", "yonca_kuru_otu", "pro_toklu_besi", "mermer_tozu", "tuz", "vitamin_mineral"]
+        return ["arpa_samani", "yonca_kuru_otu", "arpa_ezme", "pro_toklu_besi", "mermer_tozu", "tuz", "vitamin_mineral"]
     return list(FEED_DATABASE.keys())
 
 # Başlangıçta yükle

@@ -32,6 +32,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Web Fiyatlarini Tara ve Güncelle (GTB & USK)
+        run: |
+          python price_crawler.py || true
+
       - name: Telegram Botunu Baslat (5 Saat Süreyle Aktif)
         run: |
           echo "=========================================="

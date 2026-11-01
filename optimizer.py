@@ -143,6 +143,23 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
                 forage_max_row.append(-max_fr * km_coeff)
         A_ub.append(forage_max_row)
         b_ub.append(0.0)
+
+        # Kısıt 9: Nişasta (Starch) Üst Sınırı (Rumen Asidozunu Önleme)
+        # Süt İneği: Maks %28-32, Besi: Maks %45-48, Koyun: Maks %35
+        if grp == "Sütçü İnek":
+            max_nisasta = (reqs.get("nisasta_target_max", 28.0) + attempt * 2.0) / 100.0
+        elif grp == "Besi Sığırı":
+            max_nisasta = (reqs.get("nisasta_target_max", 42.0) + attempt * 2.0) / 100.0
+        else:
+            max_nisasta = (reqs.get("nisasta_target_max", 34.0) + attempt * 2.0) / 100.0
+
+        nisasta_max_row = []
+        for f in selected_feeds:
+            km_coeff = f["KM"] / 100.0
+            feed_nisasta = f.get("nisasta", 0.0) / 100.0
+            nisasta_max_row.append((feed_nisasta - max_nisasta) * km_coeff)
+        A_ub.append(nisasta_max_row)
+        b_ub.append(0.0)
         
         bounds = [(f["min"], f["max"]) for f in selected_feeds]
         
@@ -169,6 +186,7 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
     total_ca = 0.0
     total_p = 0.0
     total_fresh_weight = 0.0
+    total_nisasta = 0.0
     
     ration_items = []
     
@@ -177,9 +195,11 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
         if amount > 0.005:
             item_km = amount * (f["KM"] / 100.0)
             item_cost = amount * f["price"]
+            item_nisasta = item_km * (f.get("nisasta", 0.0) / 100.0)
             
             total_fresh_weight += amount
             total_km += item_km
+            total_nisasta += item_nisasta
             if f["is_forage"]:
                 forage_km += item_km
                 
@@ -203,6 +223,7 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
     forage_percent = (forage_km / total_km * 100.0) if total_km > 0 else 0.0
     ca_p_ratio = (total_ca / total_p) if total_p > 0 else 0.0
     hp_percent_km = (total_hp / (total_km * 10.0)) if total_km > 0 else 0.0
+    nisasta_percent_km = (total_nisasta / total_km * 100.0) if total_km > 0 else 0.0
     
     return {
         "success": True,
@@ -211,6 +232,8 @@ def solve_ration(reqs: Dict[str, Any], feed_ids: List[str] = None, custom_prices
         "total_km_kg": round(total_km, 2),
         "forage_km_kg": round(forage_km, 2),
         "forage_percent": round(forage_percent, 1),
+        "total_nisasta_kg": round(total_nisasta, 2),
+        "nisasta_percent_km": round(nisasta_percent_km, 1),
         "total_me_mcal": round(total_me, 2),
         "total_nel_mcal": round(total_nel, 2),
         "total_hp_g": round(total_hp, 1),

@@ -75,12 +75,34 @@ def generate_expert_report(result: Dict[str, Any]) -> str:
     report.append(f"• **Fosfor (P):** `{result['total_p_g']:.1f} g` | İhtiyaç: {reqs['p_req']:.1f} g")
     report.append(f"• **Ca / P Oranı:** `{ca_p:.2f}` (İdeal: 1.5 - 2.0)")
     report.append(f"• **Kaba Yem Oranı:** `%{forage_pct:.1f}` *(Bilimsel Kural: Maksimum %40 ✅)*")
+    
+    nisasta_pct = result.get('nisasta_percent_km', 0.0)
+    total_nisasta = result.get('total_nisasta_kg', 0.0)
+    nis_min = reqs.get('nisasta_target_min', 22.0)
+    nis_max = reqs.get('nisasta_target_max', 28.0)
+    report.append(f"• **Nişasta (Starch):** `{total_nisasta:.2f} kg` *(KM'de %{nisasta_pct:.1f})* | Hedef: %{nis_min:.0f} - %{nis_max:.0f}")
     report.append("")
     
     # Yüksek Mühendis M. Fatih Ceyhan Uzman Yorumu
     report.append("🧠 **YÜKSEK MÜHENDİS M. FATİH CEYHAN UZMAN YORUMU**")
     report.append("_Selçuk Üniversitesi, İ.Ü. (Doç. Dr. Ahmet Yavuz Pekel) & Amasya DSYB (NRC 2001) Saha Standartları_")
     report.append("")
+    
+    # Nişasta ve Asidoz Değerlendirmesi
+    if group == "Sütçü İnek":
+        if nisasta_pct > 28.5:
+            report.append(f"⚠️ **Nişasta / Asidoz Uyarısı:** Rasyondaki nişasta oranı %{nisasta_pct:.1f} ile üst sınırdadır. Süt yağı düşüklüğü ve asidoz (SARA) riskini önlemek için sodyum bikarbonat (soda) ve kaba yem lif dengesi korunmalıdır.")
+        elif nisasta_pct >= 21.0:
+            report.append(f"✅ **İdeal Nişasta & Rumen Dengesi:** Rasyon nişastası %{nisasta_pct:.1f} ile ideal seviyededir. Pik süt verimi ve mikrobiyal protein sentezi en üst düzeydedir.")
+        else:
+            report.append(f"ℹ️ **Düşük Nişasta:** Rasyon nişastası %{nisasta_pct:.1f} olup fermantasyon ılımandır; yüksek süt verimi için dane yem takviyesi yapılabilir.")
+    elif group == "Besi Sığırı":
+        if nisasta_pct > 42.0:
+            report.append(f"⚠️ **Yüksek Besi Nişastası:** Rasyon %{nisasta_pct:.1f} nişasta içermektedir. Hızlı canlı ağırlık artışı sağlar; şişme ve asidoza karşı yemlemeyi güne yayınız.")
+        elif nisasta_pct >= 28.0:
+            report.append(f"✅ **Güçlü Besi Nişastası:** %{nisasta_pct:.1f} nişasta yoğunluğu ile hedeflenen günlük canlı ağırlık artışı (GCAA) mükemmel desteklenmektedir.")
+        else:
+            report.append(f"✅ **Dengeli Besi Nişastası:** %{nisasta_pct:.1f} nişasta ile güvenli büyüme rasyonu sağlanmıştır.")
     
     # Asidoz ve Kaba Yem Değerlendirmesi
     if forage_pct > 40.0:

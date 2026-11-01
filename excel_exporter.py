@@ -266,7 +266,7 @@ def generate_farm_excel(farm_data: dict) -> str:
         ("Kalsiyum (Ca)", f"{res.get('total_ca_g', 0):.1f} g", f"{reqs.get('ca_req', 0):.1f} g", "Tamam"),
         ("Fosfor (P)", f"{res.get('total_p_g', 0):.1f} g", f"{reqs.get('p_req', 0):.1f} g", "Tamam"),
         ("Ca / P Oranı", f"{res.get('ca_p_ratio', 0):.2f}", "1.50 - 2.00", "İdeal"),
-        ("Kaba Yem Oranı", f"%{res.get('forage_percent', 0):.1f}", f"En az %{int(reqs.get('min_forage_ratio', 0.3)*100)}", "Rumen Güvenli")
+        ("Kaba Yem Oranı", f"%{res.get('forage_percent', 0):.1f}", f"Min %{int(reqs.get('min_forage_ratio', 0.2)*100)} - Maks %40", "Kurala Uygun")
     ]
     
     nut_headers = [("A", "PARAMETRE"), ("C", "RASYONDAN GELEN"), ("E", "İHTİYAÇ / HEDEF"), ("G", "DURUM")]

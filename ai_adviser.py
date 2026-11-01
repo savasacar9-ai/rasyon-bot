@@ -74,19 +74,23 @@ def generate_expert_report(result: Dict[str, Any]) -> str:
     report.append(f"• **Kalsiyum (Ca):** `{result['total_ca_g']:.1f} g` | İhtiyaç: {reqs['ca_req']:.1f} g")
     report.append(f"• **Fosfor (P):** `{result['total_p_g']:.1f} g` | İhtiyaç: {reqs['p_req']:.1f} g")
     report.append(f"• **Ca / P Oranı:** `{ca_p:.2f}` (İdeal: 1.5 - 2.0)")
-    report.append(f"• **Kaba Yem Oranı:** `%{forage_pct:.1f}`")
+    report.append(f"• **Kaba Yem Oranı:** `%{forage_pct:.1f}` *(Bilimsel Kural: Maksimum %40 ✅)*")
     report.append("")
     
     # Yüksek Mühendis M. Fatih Ceyhan Uzman Yorumu
     report.append("🧠 **YÜKSEK MÜHENDİS M. FATİH CEYHAN UZMAN YORUMU**")
+    report.append("_Selçuk Üniversitesi & İstanbul Üniversitesi (Doç. Dr. Ahmet Yavuz Pekel) Rasyon Standartları_")
+    report.append("")
     
     # Asidoz ve Kaba Yem Değerlendirmesi
-    if forage_pct < 25.0:
-        report.append("⚠️ **Asidoz Riski Yüksek:** Kaba yem oranı %25'in altında. Yemliğe geviş getirmeyi teşvik edecek uzun lifli kaba yem (yonca/saman) veya sodyum bikarbonat (soda) takviyesi önerilir.")
-    elif forage_pct < 35.0:
-        report.append("✅ **Yoğun Besi Düzeyi:** Kaba yem oranı %25-%35 aralığında. Yüksek enerji alımı sağlar; öğünleri gün içine yayarak (en az 2-3 öğün) asidoz kontrol altında tutulmalıdır.")
+    if forage_pct > 40.0:
+        report.append("⚠️ **Kaba Yem Uyarısı:** Kaba yem oranı %40 sınırını aşmıştır. Enerji yoğunluğu düşebilir.")
+    elif forage_pct >= 30.0:
+        report.append(f"✅ **Mükemmel Rumen & Kaba Yem Dengesi:** Kaba yem oranı %40 kuralına tam uygundur (%{forage_pct:.1f}). Rumen geviş getirme mekanizmasını uyarır ve asidoz riskini sıfırlar.")
+    elif forage_pct >= 20.0:
+        report.append(f"✅ **Yoğun Üretim / Besi Düzeyi:** Kaba yem oranı %{forage_pct:.1f} düzeyinde, %40 tavan kuralına uygundur. Yüksek enerji alımı sağlar; yemlemeyi 2-3 öğüne yaymanız önerilir.")
     else:
-        report.append("✅ **Rumen Sağlığı İdeal:** Kaba yem oranı %35 üzerinde. Rumen hareketleri, geviş getirme ve sindirim güvenliği mükemmel.")
+        report.append(f"⚠️ **Düşük Kaba Yem Uyarısı:** Kaba yem oranı %{forage_pct:.1f} olup asgari eşiktedir. Yemliğe sodyum bikarbonat (soda) ve tampon maddeler eklenmelidir.")
         
     # Ca / P Oranı Değerlendirmesi
     if ca_p < 1.2:
